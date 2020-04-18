@@ -4,3 +4,13 @@
 # Read more about conflict resolution here: TODO
 
 20200418070844-init
+20200418091048-add-user-model
+20200418093218-add-category-model
+20200418095649-add-location-model
+20200418100936-add-tag-model
+20200418104046-add-item-model
+20200418110637-fix-relations
+20200418112939-fails
+20200418115101-clean-up
+20200418120104-eureka
+20200418120354-hmm

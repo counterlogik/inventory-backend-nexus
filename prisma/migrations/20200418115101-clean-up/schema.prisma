@@ -1,29 +1,43 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator prisma_client {
   provider = "prisma-client-js"
 }
 
+model World {
+  id         Int    @id
+  name       String @unique
+  population Float
+  moons      Moon[]
+}
+
+model Moon {
+  worldId Int    @default(autoincrement()) @id
+  name    String
+  world   World  @relation(fields: [worldId], references: [id])
+}
+
 model Item {
-  id            Int        @default(autoincrement()) @id
-  owner         User       @relation(fields: [ownerId], references: [id])
+  id            Int      @default(autoincrement()) @id
+  owner         User     @relation(fields: [ownerId], references: [id])
   ownerId       Int
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
   description   String
   model         String?
-  categories    Category[] @relation(references: [id])
-  location      Location   @relation(fields: [locationId], references: [id])
+  category      Category @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  location      Location @relation(fields: [locationId], references: [id])
   locationId    Int
   spark         Int?
-  count         Int        @default(1)
+  count         Int      @default(1)
   monetaryValue Float
   link          String
   notes         String
-  tags          Tag[]      @relation(references: [id])
+  tags          Tag[]    @relation(references: [id])
   image         String
 }
 
@@ -35,7 +49,6 @@ model Category {
   title       String
   description String?
   image       String?
-  items       Item[]   @relation(references: [id])
 
   @@unique([ownerId, title])
 }

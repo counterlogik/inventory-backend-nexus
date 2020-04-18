@@ -1,10 +1,23 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator prisma_client {
   provider = "prisma-client-js"
+}
+
+model World {
+  id         Int    @id
+  name       String @unique
+  population Float
+  moons      Moon[]
+}
+
+model Moon {
+  worldId Int    @default(autoincrement()) @id
+  name    String
+  world   World  @relation(fields: [worldId], references: [id])
 }
 
 model Item {

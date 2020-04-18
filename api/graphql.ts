@@ -1,49 +1,81 @@
 import { schema } from 'nexus';
 
 schema.objectType({
-  name: 'World',
+  name: 'User',
   definition(t) {
     t.model.id();
+    t.model.handle();
+    t.model.email();
+    t.model.password();
     t.model.name();
-    t.model.population();
-    t.model.moons();
+    t.model.image();
   },
 });
 
 schema.objectType({
-  name: 'Moon',
+  name: 'Item',
   definition(t) {
-    t.model.worldId();
-    t.model.name();
-    t.model.world();
+    t.model.id();
+    t.model.owner();
+    t.model.ownerId();
+    t.model.description();
+    t.model.model();
+    t.model.categories();
+    t.model.locationId();
+    t.model.spark();
+    t.model.count();
+    t.model.monetaryValue();
+    t.model.tags();
+    t.model.link();
+    t.model.notes();
+    t.model.image();
+  },
+});
+
+schema.objectType({
+  name: 'Category',
+  definition(t) {
+    t.model.id();
+    t.model.owner();
+    t.model.ownerId();
+    t.model.description();
+    t.model.owner();
+    t.model.ownerId();
+    t.model.image();
+    t.model.title();
+  },
+});
+
+schema.objectType({
+  name: 'Location',
+  definition(t) {
+    t.model.id();
+    t.model.owner();
+    t.model.ownerId();
+    t.model.description();
+    t.model.owner();
+    t.model.ownerId();
+    t.model.image();
+    t.model.title();
+  },
+});
+
+schema.objectType({
+  name: 'Tag',
+  definition(t) {
+    t.model.id();
+    t.model.owner();
+    t.model.ownerId();
+    t.model.title();
   },
 });
 
 schema.queryType({
   definition(t) {
-    t.field('hello', {
-      type: 'World',
-      args: {
-        world: schema.stringArg({ required: false }),
-      },
-      async resolve(_root, args, ctx) {
-        const worldToFindByName = args.world ?? 'Earth';
-        const world = await ctx.db.world.findOne({
-          where: {
-            name: worldToFindByName,
-          },
-        });
-
-        if (!world) throw new Error(`No such world named "${args.world}"`);
-
-        return world;
-      },
-    });
-
-    t.list.field('worlds', {
-      type: 'World',
+    t.list.field('items', {
+      type: 'Item',
       resolve(_root, _args, ctx) {
-        return ctx.db.world.findMany();
+        return ctx.db.item.findMany();
       },
     });
   },
@@ -51,6 +83,6 @@ schema.queryType({
 
 schema.mutationType({
   definition(t) {
-    t.crud.updateOneWorld();
+    t.crud.updateOneItem();
   },
 });

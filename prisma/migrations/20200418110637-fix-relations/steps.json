@@ -1,0 +1,41 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Category",
+      "field": "itemId",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Category",
+      "field": "items"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Location",
+      "field": "itemId",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Location",
+      "field": "items"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Tag",
+      "field": "itemId",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Tag",
+      "field": "items"
+    }
+  ]
+}

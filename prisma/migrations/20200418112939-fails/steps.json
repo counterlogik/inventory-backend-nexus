@@ -1,0 +1,53 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteField",
+      "model": "Category",
+      "field": "itemId"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Location",
+      "field": "itemId"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Tag",
+      "field": "itemId"
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "categories"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "locations"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "tags"
+        },
+        "directive": "relation"
+      }
+    }
+  ]
+}
