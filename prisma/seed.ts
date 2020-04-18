@@ -8,10 +8,12 @@ async function main() {
   const results = await Promise.all(
     [
       {
+        id: 0,
         name: 'Earth',
         population: 6_000_000_000,
       },
       {
+        id: 1,
         name: 'Mars',
         population: 0,
       },
