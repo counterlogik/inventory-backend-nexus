@@ -48,3 +48,9 @@ schema.queryType({
     });
   },
 });
+
+schema.mutationType({
+  definition(t) {
+    t.crud.updateOneWorld();
+  },
+});
