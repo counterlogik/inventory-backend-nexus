@@ -3,4 +3,5 @@
 # Prisma Migrate lockfile v1
 # Read more about conflict resolution here: TODO
 
-20200418044403-create-initial-database-from-updated-schema
+20200418054743-initialize
+20200418055059-expand-schema

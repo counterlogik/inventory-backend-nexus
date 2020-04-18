@@ -8,7 +8,7 @@ generator prisma_client {
 }
 
 model World {
-  id         Int    @default(autoincrement()) @id
+  id         Int    @id
   name       String @unique
   population Float
   moons      Moon[]
