@@ -1,6 +1,7 @@
 {
-  "name": "fluttering-flamingo",
-  "license": "UNLICENSED",
+  "name": "inventory-backend-nexus",
+  "author": "addison staples",
+  "license": "MIT",
   "dependencies": {
     "nexus": "^0.20.0-next.47",
     "nexus-plugin-prisma": "^0.7.0"
@@ -12,7 +13,6 @@
     "start": "node node_modules/.build"
   },
   "prettier": {
-    "semi": false,
     "singleQuote": true,
     "trailingComma": "all"
   },

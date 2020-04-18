@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client'
-  
-const db = new PrismaClient()
+import { PrismaClient } from '@prisma/client';
 
-main()
+const db = new PrismaClient();
+
+main();
 
 async function main() {
   const results = await Promise.all(
@@ -15,10 +15,10 @@ async function main() {
         name: 'Mars',
         population: 0,
       },
-    ].map(data => db.world.create({ data })),
-  )
+    ].map((data) => db.world.create({ data })),
+  );
 
-  console.log('Seeded: %j', results)
+  console.log('Seeded: %j', results);
 
-  db.disconnect()
+  db.disconnect();
 }
