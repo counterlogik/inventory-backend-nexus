@@ -96,20 +96,5 @@ schema.objectType({
     t.crud.createOneCategory();
     t.crud.createOneTag();
     t.crud.createOneItem();
-
-    t.field('createCategorySpecial', {
-      type: 'Category',
-      resolve: (_, _x, ctx) => {
-        console.log(ctx);
-        return ctx.db.category.create({
-          data: {
-            owner: {
-              connect: { email: 'jastaplesiv2@gmail.com' },
-            },
-            title: ' ',
-          },
-        });
-      },
-    });
   },
 });
