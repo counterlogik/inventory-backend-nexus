@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator prisma_client {
@@ -46,7 +46,7 @@ model Location {
   title       String   @unique
   description String?
   image       String?
-  items       Item[]
+  items       Item[]   @relation(references: [id])
 }
 
 model Tag {

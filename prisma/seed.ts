@@ -5,22 +5,33 @@ const db = new PrismaClient();
 main();
 
 async function main() {
-  const results = await Promise.all(
+  const seedUserResults = await Promise.all(
     [
       {
-        id: 0,
-        name: 'Earth',
-        population: 6_000_000_000,
+        email: `jastaplesiv@gmail.com`,
+        password: `12345`,
       },
       {
-        id: 1,
-        name: 'Mars',
-        population: 0,
+        email: `addison.staples@accenture.com`,
+        password: `67890`,
       },
-    ].map((data) => db.world.create({ data })),
+    ].map((data) => db.user.create({ data })),
   );
 
-  console.log('Seeded: %j', results);
+  const seedCategoryResults = await Promise.all([
+    db.category.create({
+      data: {
+        owner: { connect: { email: `jastaplesiv@gmail.com` } },
+        title: `Category 01`,
+      },
+    }),
+    db.category.create({
+      data: {
+        owner: { connect: { email: `addison.staples@accenture.com` } },
+        title: `Category X`,
+      },
+    }),
+  ]);
 
   db.disconnect();
 }

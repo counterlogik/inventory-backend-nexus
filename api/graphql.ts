@@ -28,6 +28,7 @@ schema.objectType({
     t.model.tags();
     t.model.link();
     t.model.notes();
+    t.model.tags();
     t.model.image();
   },
 });
@@ -43,6 +44,7 @@ schema.objectType({
     t.model.ownerId();
     t.model.image();
     t.model.title();
+    t.model.items();
   },
 });
 
@@ -57,6 +59,7 @@ schema.objectType({
     t.model.ownerId();
     t.model.image();
     t.model.title();
+    t.model.items();
   },
 });
 
@@ -67,22 +70,43 @@ schema.objectType({
     t.model.owner();
     t.model.ownerId();
     t.model.title();
+    t.model.items();
   },
 });
 
-schema.queryType({
+schema.objectType({
+  name: 'Query',
   definition(t) {
-    t.list.field('items', {
-      type: 'Item',
-      resolve(_root, _args, ctx) {
-        return ctx.db.item.findMany();
+    t.crud.user();
+    t.crud.item();
+    t.crud.location();
+    t.crud.category();
+    t.crud.tag();
+  },
+});
+
+schema.objectType({
+  name: 'Mutation',
+  definition(t) {
+    t.crud.createOneUser();
+    t.crud.createOneLocation();
+    t.crud.createOneCategory();
+    t.crud.createOneTag();
+    t.crud.createOneItem();
+
+    t.field('createCategorySpecial', {
+      type: 'Category',
+      resolve: (_, _x, ctx) => {
+        console.log(ctx);
+        return ctx.db.category.create({
+          data: {
+            owner: {
+              connect: { email: 'jastaplesiv2@gmail.com' },
+            },
+            title: ' ',
+          },
+        });
       },
     });
-  },
-});
-
-schema.mutationType({
-  definition(t) {
-    t.crud.updateOneItem();
   },
 });

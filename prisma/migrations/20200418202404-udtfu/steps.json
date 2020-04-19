@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Item",
+      "field": "location",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Item",
+      "field": "locationId",
+      "arity": "Optional"
+    }
+  ]
+}

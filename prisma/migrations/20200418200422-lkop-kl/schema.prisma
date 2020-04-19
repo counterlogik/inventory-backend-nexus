@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator prisma_client {
@@ -16,15 +16,15 @@ model Item {
   description   String
   model         String?
   categories    Category[] @relation(references: [id])
-  location      Location?  @relation(fields: [locationId], references: [id])
-  locationId    Int?
+  location      Location   @relation(fields: [locationId], references: [id])
+  locationId    Int
   spark         Int?
   count         Int        @default(1)
-  monetaryValue Float?
-  link          String?
-  notes         String?
+  monetaryValue Float
+  link          String
+  notes         String
   tags          Tag[]      @relation(references: [id])
-  image         String?
+  image         String
 }
 
 model Category {
@@ -46,7 +46,7 @@ model Location {
   title       String   @unique
   description String?
   image       String?
-  items       Item[]
+  items       Item[]   @relation(references: [id])
 }
 
 model Tag {
