@@ -4,11 +4,14 @@ schema.objectType({
   name: 'User',
   definition(t) {
     t.model.id();
-    t.model.handle();
     t.model.email();
     t.model.password();
     t.model.name();
     t.model.image();
+    t.model.categories();
+    t.model.locations();
+    t.model.tags();
+    t.model.items();
   },
 });
 
@@ -25,7 +28,6 @@ schema.objectType({
     t.model.spark();
     t.model.count();
     t.model.monetaryValue();
-    t.model.tags();
     t.model.link();
     t.model.notes();
     t.model.tags();
@@ -39,11 +41,9 @@ schema.objectType({
     t.model.id();
     t.model.owner();
     t.model.ownerId();
-    t.model.description();
-    t.model.owner();
-    t.model.ownerId();
-    t.model.image();
     t.model.title();
+    t.model.description();
+    t.model.image();
     t.model.items();
   },
 });
@@ -54,11 +54,9 @@ schema.objectType({
     t.model.id();
     t.model.owner();
     t.model.ownerId();
-    t.model.description();
-    t.model.owner();
-    t.model.ownerId();
-    t.model.image();
     t.model.title();
+    t.model.description();
+    t.model.image();
     t.model.items();
   },
 });
@@ -78,10 +76,15 @@ schema.objectType({
   name: 'Query',
   definition(t) {
     t.crud.user();
+    t.crud.users();
     t.crud.item();
+    t.crud.items();
     t.crud.location();
+    t.crud.locations();
     t.crud.category();
+    t.crud.categories();
     t.crud.tag();
+    t.crud.tags();
   },
 });
 

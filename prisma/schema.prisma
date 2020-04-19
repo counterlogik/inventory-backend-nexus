@@ -7,6 +7,21 @@ generator prisma_client {
   provider = "prisma-client-js"
 }
 
+model User {
+  id         Int        @default(autoincrement()) @id
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  handle     String?    @unique
+  email      String     @unique
+  password   String
+  name       String?
+  image      String?
+  categories Category[]
+  locations  Location[]
+  tags       Tag[]
+  items      Item[]
+}
+
 model Item {
   id            Int        @default(autoincrement()) @id
   owner         User       @relation(fields: [ownerId], references: [id])
@@ -56,19 +71,4 @@ model Tag {
   createdAt DateTime @default(now())
   title     String   @unique
   items     Item[]   @relation(references: [id])
-}
-
-model User {
-  id        Int        @default(autoincrement()) @id
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  handle    String?    @unique
-  email     String     @unique
-  password  String
-  name      String?
-  image     String?
-  category  Category[]
-  location  Location[]
-  tags      Tag[]
-  item      Item[]
 }
