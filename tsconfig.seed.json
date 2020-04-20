@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "strict": true,
+    "rootDir": "prisma",
+    "outDir": "prisma/out",
+    "resolveJsonModule": true,
+    "sourceMap": true
+  },
+  "include": ["**/*.seed.ts"]
+}

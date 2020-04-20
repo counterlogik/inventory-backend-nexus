@@ -24,7 +24,7 @@ schema.objectType({
     t.model.description();
     t.model.model();
     t.model.categories();
-    t.model.locationId();
+    t.model.locations();
     t.model.spark();
     t.model.count();
     t.model.monetaryValue();

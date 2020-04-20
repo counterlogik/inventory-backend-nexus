@@ -1,0 +1,35 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateEnum",
+      "enum": "Spark",
+      "createdValues": [
+        "LOSE",
+        "LIKE",
+        "LOVE",
+        "NEED"
+      ],
+      "deletedValues": [
+        "lose",
+        "like",
+        "love",
+        "need"
+      ]
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "spark"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "newValue": "LIKE"
+    }
+  ]
+}

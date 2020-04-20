@@ -1,17 +1,10 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator prisma_client {
   provider = "prisma-client-js"
-}
-
-enum Spark {
-  LOSE
-  LIKE
-  LOVE
-  NEED
 }
 
 model User {
@@ -38,7 +31,7 @@ model Item {
   model         String?
   categories    Category[] @relation(references: [id])
   locations     Location[] @relation(references: [id])
-  spark         Spark?     @default(LIKE)
+  spark         Int?       @default(2)
   count         Int        @default(1)
   monetaryValue Float?
   link          String?

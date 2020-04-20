@@ -1,0 +1,29 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteEnum",
+      "enum": "Spark"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Item",
+      "field": "spark",
+      "type": "Int"
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "spark"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "newValue": "2"
+    }
+  ]
+}

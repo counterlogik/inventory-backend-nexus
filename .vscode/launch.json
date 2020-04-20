@@ -1,5 +1,4 @@
 {
-  // Note: You can delete this file if you're not using vscode
   "version": "0.2.0",
   "configurations": [
     {
@@ -12,6 +11,15 @@
       "args": ["api/app.ts"],
       "sourceMaps": true,
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Seed Data Inspector",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/prisma/data.seed.ts",
+      "preLaunchTask": "tsc: build - tsconfig.seed.json",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/prisma/out/data.seed.js"]
     }
   ]
 }
