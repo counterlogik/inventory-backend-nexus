@@ -6,3 +6,6 @@
 
 # seed data
 **/out
+
+# prisma
+prisma/migrations
