@@ -892,13 +892,6 @@
     {
       "tag": "CreateField",
       "model": "Location",
-      "field": "description",
-      "type": "String",
-      "arity": "Optional"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Location",
       "field": "image",
       "type": "String",
       "arity": "Optional"

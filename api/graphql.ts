@@ -55,7 +55,6 @@ schema.objectType({
     t.model.owner();
     t.model.ownerId();
     t.model.title();
-    t.model.description();
     t.model.image();
     t.model.items();
   },
@@ -96,5 +95,15 @@ schema.objectType({
     t.crud.createOneCategory();
     t.crud.createOneTag();
     t.crud.createOneItem();
+
+    t.crud.deleteOneCategory();
+    t.crud.deleteOneTag();
+    t.crud.deleteOneItem();
+
+    t.crud.updateOneUser();
+    t.crud.updateOneLocation();
+    t.crud.updateOneCategory();
+    t.crud.updateOneTag();
+    t.crud.updateOneItem();
   },
 });

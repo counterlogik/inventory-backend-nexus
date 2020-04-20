@@ -61,14 +61,13 @@ model Category {
 }
 
 model Location {
-  id          Int      @default(autoincrement()) @id
-  owner       User     @relation(fields: [ownerId], references: [id])
-  ownerId     Int
-  createdAt   DateTime @default(now())
-  title       String
-  description String?
-  image       String?
-  items       Item[]   @relation(references: [id])
+  id        Int      @default(autoincrement()) @id
+  owner     User     @relation(fields: [ownerId], references: [id])
+  ownerId   Int
+  createdAt DateTime @default(now())
+  title     String
+  image     String?
+  items     Item[]   @relation(references: [id])
 
   @@unique([ownerId, title])
 }
