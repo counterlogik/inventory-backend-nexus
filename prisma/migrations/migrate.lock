@@ -3,10 +3,4 @@
 # Prisma Migrate lockfile v1
 # Read more about conflict resolution here: TODO
 
-20200419140031-init
-20200419143902
-20200419144049-remove-field-handle-from-model-user-and-add-unique-multifield-attribute-to-models-category--location--tag
-20200419161203-add-enum-spark
-20200419174948-fix-enum-spark
-20200419175118-remove-enum-spark
-20200419175232-initalize
+20200419193553-init

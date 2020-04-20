@@ -9,14 +9,16 @@ main();
 
 async function main() {
   await Promise.all(
-    [1, 2, 3, 4, 5]
-      .map((digit: number) => {
-        return {
-          email: `fake${digit}@gmail.com`,
-          password: '12345',
-        };
-      })
-      .map((data) => db.user.create({ data })),
+    [
+      {
+        email: 'jastaplesiv@gmail.com',
+        password: '12345',
+      },
+      {
+        email: 'jastaplesiv+test@gmail.com',
+        password: '67890',
+      },
+    ].map((data) => db.user.create({ data })),
   );
 
   const categoryResults = await Promise.all(

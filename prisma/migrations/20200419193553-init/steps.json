@@ -2,6 +2,16 @@
   "version": "0.3.14-fixed",
   "steps": [
     {
+      "tag": "CreateEnum",
+      "enum": "Spark",
+      "values": [
+        "LOSE",
+        "LIKE",
+        "LOVE",
+        "NEED"
+      ]
+    },
+    {
       "tag": "CreateSource",
       "source": "db"
     },
@@ -118,24 +128,6 @@
           "field": "updatedAt"
         },
         "directive": "updatedAt"
-      }
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "handle",
-      "type": "String",
-      "arity": "Optional"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "handle"
-        },
-        "directive": "unique"
       }
     },
     {
@@ -404,9 +396,9 @@
     {
       "tag": "CreateField",
       "model": "Item",
-      "field": "location",
+      "field": "locations",
       "type": "Location",
-      "arity": "Optional"
+      "arity": "List"
     },
     {
       "tag": "CreateDirective",
@@ -414,7 +406,7 @@
         "path": {
           "tag": "Field",
           "model": "Item",
-          "field": "location"
+          "field": "locations"
         },
         "directive": "relation"
       }
@@ -426,21 +418,7 @@
         "path": {
           "tag": "Field",
           "model": "Item",
-          "field": "location"
-        },
-        "directive": "relation"
-      },
-      "argument": "fields",
-      "value": "[locationId]"
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Item",
-          "field": "location"
+          "field": "locations"
         },
         "directive": "relation"
       },
@@ -450,16 +428,34 @@
     {
       "tag": "CreateField",
       "model": "Item",
-      "field": "locationId",
-      "type": "Int",
+      "field": "spark",
+      "type": "Spark",
       "arity": "Optional"
     },
     {
-      "tag": "CreateField",
-      "model": "Item",
-      "field": "spark",
-      "type": "Int",
-      "arity": "Optional"
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "spark"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "spark"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "LIKE"
     },
     {
       "tag": "CreateField",
@@ -693,17 +689,6 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Category",
-          "field": "title"
-        },
-        "directive": "unique"
-      }
-    },
-    {
       "tag": "CreateField",
       "model": "Category",
       "field": "description",
@@ -748,6 +733,22 @@
       },
       "argument": "references",
       "value": "[id]"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Category",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[ownerId, title]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
     },
     {
       "tag": "CreateModel",
@@ -889,17 +890,6 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Location",
-          "field": "title"
-        },
-        "directive": "unique"
-      }
-    },
-    {
       "tag": "CreateField",
       "model": "Location",
       "field": "description",
@@ -919,6 +909,47 @@
       "field": "items",
       "type": "Item",
       "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "items"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "items"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Location",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[ownerId, title]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
     },
     {
       "tag": "CreateModel",
@@ -1060,17 +1091,6 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Tag",
-          "field": "title"
-        },
-        "directive": "unique"
-      }
-    },
-    {
       "tag": "CreateField",
       "model": "Tag",
       "field": "items",
@@ -1101,6 +1121,22 @@
       },
       "argument": "references",
       "value": "[id]"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Tag",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[ownerId, title]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
     }
   ]
 }
