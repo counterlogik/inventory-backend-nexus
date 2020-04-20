@@ -1,0 +1,25 @@
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+  },
+  extends: ['plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'import', 'prettier'],
+  rules: {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    'comma-dangle': ['error', 'always-multiline'],
+    'eol-last': 'error',
+    'import/no-deprecated': 'warn',
+    'import/order': 'warn',
+    'max-len': 'off',
+    'no-debugger': 'error',
+    'no-unused-expressions': 'error',
+    'no-unused-labels': 'error',
+    'prettier/prettier': 'error',
+    'quote-props': ['error', 'as-needed'],
+    semi: 'error',
+  },
+};

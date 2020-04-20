@@ -5,8 +5,6 @@ import * as items from './data/items.json';
 
 const db = new PrismaClient();
 
-main();
-
 async function main() {
   await Promise.all(
     [
@@ -53,16 +51,14 @@ async function main() {
           categories: {
             connect: item.categories.map((title) => {
               return {
-                id: categoryResults.find((category) => category.title === title)
-                  .id,
+                id: categoryResults.find((category) => category.title === title).id,
               };
             }),
           },
           locations: {
             connect: item.locations.map((title) => {
               return {
-                id: locationResults.find((location) => location.title === title)
-                  .id,
+                id: locationResults.find((location) => location.title === title).id,
               };
             }),
           },
@@ -76,3 +72,5 @@ async function main() {
 
   db.disconnect();
 }
+
+main();
