@@ -9,7 +9,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'import', 'prettier'],
   rules: {
-    "@typescript-eslint/explicit-function-return-type": "off",
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-var-requires': 0,
     'comma-dangle': ['error', 'always-multiline'],
     'eol-last': 'error',
     'import/no-deprecated': 'warn',
