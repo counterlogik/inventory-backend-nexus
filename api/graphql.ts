@@ -97,7 +97,6 @@ schema.objectType({
     t.crud.createOneItem();
 
     t.crud.deleteOneCategory();
-    t.crud.deleteOneTag();
     t.crud.deleteOneItem();
 
     t.crud.updateOneUser();
