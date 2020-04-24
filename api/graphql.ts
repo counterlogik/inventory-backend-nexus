@@ -1,4 +1,5 @@
 import { schema } from 'nexus';
+import { intArg } from '@nexus/schema';
 
 schema.objectType({
   name: 'User',
@@ -84,6 +85,53 @@ schema.objectType({
     t.crud.categories();
     t.crud.tag();
     t.crud.tags();
+
+    // should move to using computed inputs on calls like this to avoid
+    // requirement for FE to pass current user's ownerId as an arg
+    t.field('categoriesByUser', {
+      type: 'Category',
+      list: true,
+      args: {
+        ownerId: intArg(),
+      },
+      resolve(_root, { ownerId }, ctx) {
+        return ctx.db.category.findMany({
+          where: {
+            owner: { id: ownerId },
+          },
+        });
+      },
+    });
+
+    t.field('locationsByUser', {
+      type: 'Location',
+      list: true,
+      args: {
+        ownerId: intArg(),
+      },
+      resolve(_root, { ownerId }, ctx) {
+        return ctx.db.location.findMany({
+          where: {
+            owner: { id: ownerId },
+          },
+        });
+      },
+    });
+
+    t.field('tagsByUser', {
+      type: 'Tag',
+      list: true,
+      args: {
+        ownerId: intArg(),
+      },
+      resolve(_root, { ownerId }, ctx) {
+        return ctx.db.tag.findMany({
+          where: {
+            owner: { id: ownerId },
+          },
+        });
+      },
+    });
   },
 });
 
