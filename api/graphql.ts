@@ -86,8 +86,7 @@ schema.objectType({
     t.crud.tag();
     t.crud.tags();
 
-    // should move to using computed inputs on calls like this to avoid
-    // requirement for FE to pass current user's ownerId as an arg
+    // TODO: should move to  computed inputs avoid requirement requiring ownerId
     t.field('categoriesByUser', {
       type: 'Category',
       list: true,
@@ -152,5 +151,7 @@ schema.objectType({
     t.crud.updateOneCategory();
     t.crud.updateOneTag();
     t.crud.updateOneItem();
+
+    t.crud.upsertOneItem();
   },
 });
