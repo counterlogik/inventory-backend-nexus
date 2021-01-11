@@ -5,7 +5,9 @@
     "lib": ["esnext"],
     "strict": true,
     "rootDir": "api",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "skipLibCheck": true
   },
   "include": ["api"]
 }

@@ -70,7 +70,7 @@ async function main() {
     ),
   );
 
-  db.disconnect();
+  db.$disconnect();
 }
 
 main();

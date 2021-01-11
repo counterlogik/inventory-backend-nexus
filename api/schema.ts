@@ -1,8 +1,10 @@
-import { schema } from 'nexus';
-import { intArg } from '@nexus/schema';
+import * as path from "path";
 
-schema.objectType({
-  name: 'User',
+import { makeSchema, declarativeWrappingPlugin, objectType, intArg } from "nexus";
+import { nexusPrisma } from "nexus-plugin-prisma";
+
+const User = objectType({
+  name: "User",
   definition(t) {
     t.model.id();
     t.model.email();
@@ -16,8 +18,8 @@ schema.objectType({
   },
 });
 
-schema.objectType({
-  name: 'Item',
+const Item = objectType({
+  name: "Item",
   definition(t) {
     t.model.id();
     t.model.owner();
@@ -36,8 +38,8 @@ schema.objectType({
   },
 });
 
-schema.objectType({
-  name: 'Category',
+const Category = objectType({
+  name: "Category",
   definition(t) {
     t.model.id();
     t.model.owner();
@@ -49,8 +51,8 @@ schema.objectType({
   },
 });
 
-schema.objectType({
-  name: 'Location',
+const Location = objectType({
+  name: "Location",
   definition(t) {
     t.model.id();
     t.model.owner();
@@ -61,8 +63,8 @@ schema.objectType({
   },
 });
 
-schema.objectType({
-  name: 'Tag',
+const Tag = objectType({
+  name: "Tag",
   definition(t) {
     t.model.id();
     t.model.owner();
@@ -72,8 +74,8 @@ schema.objectType({
   },
 });
 
-schema.objectType({
-  name: 'Query',
+const Query = objectType({
+  name: "Query",
   definition(t) {
     t.crud.user();
     t.crud.users();
@@ -86,9 +88,9 @@ schema.objectType({
     t.crud.tag();
     t.crud.tags();
 
-    // TODO: should move to  computed inputs avoid requirement requiring ownerId
-    t.field('categoriesByUser', {
-      type: 'Category',
+    // TODO: should move to computed inputs to avoid requirement requiring ownerId
+    t.field("categoriesByUser", {
+      type: "Category",
       list: true,
       args: {
         ownerId: intArg(),
@@ -102,8 +104,8 @@ schema.objectType({
       },
     });
 
-    t.field('locationsByUser', {
-      type: 'Location',
+    t.field("locationsByUser", {
+      type: "Location",
       list: true,
       args: {
         ownerId: intArg(),
@@ -117,8 +119,8 @@ schema.objectType({
       },
     });
 
-    t.field('tagsByUser', {
-      type: 'Tag',
+    t.field("tagsByUser", {
+      type: "Tag",
       list: true,
       args: {
         ownerId: intArg(),
@@ -134,8 +136,8 @@ schema.objectType({
   },
 });
 
-schema.objectType({
-  name: 'Mutation',
+const Mutation = objectType({
+  name: "Mutation",
   definition(t) {
     t.crud.createOneUser();
     t.crud.createOneLocation();
@@ -153,5 +155,27 @@ schema.objectType({
     t.crud.updateOneItem();
 
     t.crud.upsertOneItem();
+  },
+});
+
+export const schema = makeSchema({
+  types: [User, Item, Category, Location, Tag, Query, Mutation],
+  plugins: [nexusPrisma({ experimentalCRUD: true }), declarativeWrappingPlugin()],
+  outputs: {
+    schema: path.join(__dirname, "..", "generated", "schema.graphql"),
+    typegen: path.join(__dirname, "..", "generated", "nexus-typegen.d.ts"),
+  },
+  contextType: {
+    module: require.resolve("./context"),
+    alias: "ContextModule",
+    export: "Context",
+  },
+  sourceTypes: {
+    modules: [
+      {
+        module: require.resolve(".prisma/client/index.d.ts"),
+        alias: "prisma",
+      },
+    ],
   },
 });

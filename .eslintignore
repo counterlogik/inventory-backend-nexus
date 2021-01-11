@@ -12,6 +12,9 @@
 # seed data
 **/out
 
+# generated
+/generated
+
 # ignore mocks and stubs (TODO: test this and decide)
 # **/*.mock.{ts}
 # **/*.stub.{ts}

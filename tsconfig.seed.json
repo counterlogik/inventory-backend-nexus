@@ -8,7 +8,8 @@
     "rootDir": "prisma",
     "outDir": "prisma/out",
     "resolveJsonModule": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmit": true
   },
   "include": ["**/*.seed.ts"]
 }
